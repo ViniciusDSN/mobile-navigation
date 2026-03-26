@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/material-top-tabs": "^7.4.22",
     "expo": "~55.0.8",
     "expo-status-bar": "~55.0.4",
     "react": "19.2.0",
