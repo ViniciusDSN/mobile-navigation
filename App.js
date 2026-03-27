@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
+import StatusScreen from './pages/Status';
+import SkillsScreen from './pages/Skills';
+import InventoryScreen from './pages/Inventory';
 
-export default function App() {
+const Tab = createMaterialTopTabNavigator();
+
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: '#1a1a1a',
+          borderBottomWidth: 1,
+          borderBottomColor: '#333',
+        },
+        tabBarActiveTintColor: '#9b59b6',
+        tabBarInactiveTintColor: '#888',
+        tabBarIndicatorStyle: {
+          backgroundColor: '#9b59b6',
+          height: 3,
+        },
+        tabBarLabelStyle: {
+          fontWeight: 'bold',
+          fontSize: 14,
+        }
+      }}
+    >
+      <Tab.Screen name="Status" component={StatusScreen} />
+      <Tab.Screen name="Skills" component={SkillsScreen} />
+      <Tab.Screen name="Inventory" component={InventoryScreen} />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1a1a' }}>
+      <StatusBar barStyle="light-content" backgroundColor="#1a1a1a" /> 
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </SafeAreaView>
+  );
+}
